@@ -25,9 +25,9 @@ const routes = [
   },
 ];
 
-const router = createBrowserRouter(routes, {
-  basename: "/tweet-hub.netlify.app",
-});
-// const router = createBrowserRouter(routes);
+// const router = createBrowserRouter(routes, {
+//   basename: "/tweet-hub.netlify.app",
+// });
+const router = createBrowserRouter(routes);
 
 export default router;
