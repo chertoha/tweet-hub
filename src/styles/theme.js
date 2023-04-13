@@ -5,7 +5,13 @@ export const breakpoints = {
 };
 
 export const theme = {
-  colors: {},
+  colors: {
+    primaryBgd: "#ffffff",
+    secondaryBgd: "#EBD8FF",
+    cardBgd: "#5736A3",
+    primaryText: "#EBD8FF",
+    secondaryText: "#373737",
+  },
 
   fonts: {
     montserrat: "'Montserrat', sans-serif",
@@ -37,11 +43,11 @@ export const theme = {
     default: "250ms cubic-bezier(0.4, 0, 0.2, 1)",
   },
 
-  breakpoints: [
-    `${breakpoints.mobile}px`,
-    `${breakpoints.tablet}px`,
-    `${breakpoints.desktop}px`,
-  ],
+  breakpoints: {
+    mobile: `${breakpoints.mobile}px`,
+    tablet: `${breakpoints.tablet}px`,
+    desktop: `${breakpoints.desktop}px`,
+  },
 
   mq: {
     mobileOnly: `@media screen and (max-width: ${breakpoints.tablet - 0.02}px)`,

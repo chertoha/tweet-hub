@@ -1,14 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
-import { ROUTES } from "router";
+import Tweets from "components/Tweets";
 
 const TweetsPage = () => {
-  const location = useLocation();
-  const backRoute = location.state?.from ?? ROUTES.HOME;
-
   return (
-    <div>
-      <Link to={backRoute}> Back</Link>
-    </div>
+    <>
+      <Tweets />
+    </>
   );
 };
 
