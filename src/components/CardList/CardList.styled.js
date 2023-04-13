@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { theme } from "styles/theme";
 
 export const List = styled("ul")`
+  padding-bottom: 32px;
+
   ${theme.mq.tablet} {
     display: flex;
     flex-wrap: wrap;
