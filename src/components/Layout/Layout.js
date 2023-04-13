@@ -4,8 +4,6 @@ import { StyledLayout } from "./Layout.styled";
 const Layout = () => {
   return (
     <StyledLayout>
-      {/* <Header /> */}
-      <div>Layout</div>
       <Outlet />
     </StyledLayout>
   );
