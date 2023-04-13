@@ -8,6 +8,21 @@ const CardList = () => {
       <Item>
         <Card />
       </Item>
+      <Item>
+        <Card />
+      </Item>
+      <Item>
+        <Card />
+      </Item>
+      <Item>
+        <Card />
+      </Item>
+      <Item>
+        <Card />
+      </Item>
+      <Item>
+        <Card />
+      </Item>
     </List>
   );
 };

@@ -11,6 +11,7 @@ export const theme = {
     cardBgd: "#5736A3",
     primaryText: "#EBD8FF",
     secondaryText: "#373737",
+    buttonActive: "#5CD3A8",
   },
 
   fonts: {

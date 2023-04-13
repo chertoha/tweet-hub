@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import logoImage from "assets/images/logo.png";
+import cardBgdImage from "assets/images/card/card-bgd-image.png";
+import { Button } from "components/UIKit/Button/Button.styled";
 
 export const StyledCard = styled("div")`
   height: 460px;
@@ -8,12 +11,10 @@ export const StyledCard = styled("div")`
   align-items: center;
   justify-content: flex-end;
 
-  background: linear-gradient(
-    114.99deg,
-    #471ca9 -0.99%,
-    #5736a3 54.28%,
-    #4b2a99 78.99%
-  );
+  background: url(${logoImage}) left 20px top 20px no-repeat,
+    url(${cardBgdImage}) left 50% top 28px no-repeat,
+    linear-gradient(114.99deg, #471ca9 -0.99%, #5736a3 54.28%, #4b2a99 78.99%);
+
   box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
 `;
@@ -80,10 +81,24 @@ export const CardMeta = styled("div")`
 `;
 
 export const CardText = styled("p")`
-  text-transform: uppercase;
   margin-bottom: 16px;
+  text-transform: uppercase;
+  text-align: center;
 
   &:last-of-type {
     margin-bottom: 0;
+  }
+`;
+
+export const CardButton = styled(Button)`
+  margin-top: 26px;
+  padding: 14px 0;
+  width: 196px;
+  background-color: ${({ isActive, theme: { colors } }) =>
+    isActive ? colors.buttonActive : colors.secondaryBgd};
+
+  &:active {
+    background-color: ${(p) =>
+      p.isActive ? "rgba(92, 211, 168, 0.8)" : "rgba(235, 216, 255, 0.8)"};
   }
 `;

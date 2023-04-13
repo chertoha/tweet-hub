@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import {
   AvatarBar,
+  CardButton,
   CardMeta,
   CardText,
   ImageWrapper,
@@ -26,7 +27,7 @@ const Card = ({
       <CardMeta>
         <CardText>777 tweets</CardText>
         <CardText>100,500 Followers</CardText>
-        <button type="button">Follow</button>
+        <CardButton type="button">Follow</CardButton>
       </CardMeta>
     </StyledCard>
   );

@@ -5,8 +5,8 @@ export const StyledContainer = styled("div")`
   margin: 0 auto;
   width: 100%;
 
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 16px;
+  padding-left: 16px;
 
   ${theme.mq.mobileOnly} {
     max-width: ${(p) => p.theme.breakpoints.mobile};
