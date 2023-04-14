@@ -8,15 +8,33 @@ import {
   StyledCard,
 } from "./Card.styled";
 import defaultAvatar from "assets/images/card/default-avatar.png";
+import { useUpdateUserMutation } from "redux/users/usersApi";
+import { convertNumberToLocale } from "utils/convertNumberToLocale";
 
-const Card = ({
-  id,
-  user,
-  tweets,
-  followers,
-  isFollowing,
-  avatar = defaultAvatar,
-}) => {
+const Card = ({ userData }) => {
+  const [updateUser] = useUpdateUserMutation();
+
+  const {
+    id,
+    user,
+    tweets,
+    followers,
+    isFollowing,
+    avatar = defaultAvatar,
+  } = userData;
+
+  const onFollowClick = () => {
+    updateUser({
+      ...userData,
+      isFollowing: !isFollowing,
+
+      // followers: "100500",
+      followers: isFollowing
+        ? (+followers - 1).toString()
+        : (+followers + 1).toString(),
+    });
+  };
+
   return (
     <StyledCard>
       <AvatarBar>
@@ -24,10 +42,23 @@ const Card = ({
           <img src={avatar} alt={user} width="62" height="62" />
         </ImageWrapper>
       </AvatarBar>
+
       <CardMeta>
-        <CardText>777 tweets</CardText>
-        <CardText>100,500 Followers</CardText>
-        <CardButton type="button">Follow</CardButton>
+        <CardText>{`${convertNumberToLocale(tweets)} ${
+          tweets === 1 ? "tweet" : "tweets"
+        }`}</CardText>
+
+        <CardText>{`${convertNumberToLocale(followers)} ${
+          followers === 1 ? "Followers" : "Followers"
+        }`}</CardText>
+
+        <CardButton
+          type="button"
+          isActive={isFollowing}
+          onClick={onFollowClick}
+        >
+          {isFollowing ? "Following" : "Follow"}
+        </CardButton>
       </CardMeta>
     </StyledCard>
   );
@@ -36,10 +67,12 @@ const Card = ({
 export default Card;
 
 Card.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  user: PropTypes.string.isRequired,
-  tweets: PropTypes.number.isRequired,
-  followers: PropTypes.number.isRequired,
-  isFollowing: PropTypes.bool.isRequired,
-  avatar: PropTypes.string.isRequired,
+  userData: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    user: PropTypes.string.isRequired,
+    tweets: PropTypes.string.isRequired,
+    followers: PropTypes.string.isRequired,
+    isFollowing: PropTypes.bool.isRequired,
+    avatar: PropTypes.string,
+  }).isRequired,
 };
