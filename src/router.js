@@ -21,6 +21,10 @@ const routes = [
         path: ROUTES.TWEETS,
         element: <TweetsPage />,
       },
+      {
+        path: "*",
+        element: <HomePage />,
+      },
     ],
   },
 ];

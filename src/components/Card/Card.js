@@ -15,7 +15,6 @@ const Card = ({ userData }) => {
   const [updateUser] = useUpdateUserMutation();
 
   const {
-    id,
     user,
     tweets,
     followers,
@@ -42,7 +41,6 @@ const Card = ({ userData }) => {
           <img src={avatar} alt={user} width="62" height="62" />
         </ImageWrapper>
       </AvatarBar>
-
       <CardMeta>
         <CardText>{`${convertNumberToLocale(tweets)} ${
           tweets === 1 ? "tweet" : "tweets"

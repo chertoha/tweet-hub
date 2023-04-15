@@ -1,7 +1,5 @@
 import axios from "axios";
 import { createApi } from "@reduxjs/toolkit/query/react";
-// import storage from "redux-persist/lib/storage";
-// import { persistReducer } from "redux-persist";
 
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: "" }) =>
@@ -37,11 +35,12 @@ export const usersApi = createApi({
 
   endpoints: (builder) => ({
     getUsers: builder.query({
-      query: ({ page, limit }) => ({
+      query: ({ page = 1, limit, isFollowing }) => ({
         url: `/users`,
         params: {
           page,
           limit,
+          isFollowing,
         },
       }),
 
@@ -59,14 +58,4 @@ export const usersApi = createApi({
   }),
 });
 
-// const persistConfig = {
-//   key: "users",
-//   storage,
-// };
-
-// export const usersApiPersistedReducer = persistReducer(
-//   persistConfig,
-//   usersApi.reducer
-// );
-
-export const { useGetUsersQuery, useUpdateUserMutation } = usersApi;
+export const { useUpdateUserMutation, useLazyGetUsersQuery } = usersApi;
