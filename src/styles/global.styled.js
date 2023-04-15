@@ -18,6 +18,8 @@ body {
   
   font-size: ${theme.fontSizes.l};
   font-weight: ${theme.fontWeights.medium};
+
+  background-color: ${theme.colors.primaryBgd};
 }
 
 * {

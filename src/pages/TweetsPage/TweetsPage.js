@@ -1,5 +1,11 @@
+import Tweets from "components/Tweets";
+
 const TweetsPage = () => {
-  return <div>/TweetsPage</div>;
+  return (
+    <>
+      <Tweets />
+    </>
+  );
 };
 
 export default TweetsPage;
