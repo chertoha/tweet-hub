@@ -1,8 +1,6 @@
 import Box from "components/Box";
 import Container from "components/Container";
 import DeveloperCard from "components/DeveloperCard";
-import { Link, useLocation } from "react-router-dom";
-import { ROUTES } from "router";
 
 const Home = () => {
   return (

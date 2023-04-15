@@ -96,7 +96,6 @@ export const TweetsLinkButton = styled(Button)`
   display: block;
   width: 100%;
   height: 100%;
-  /* padding: 14px 30px; */
   background-color: ${(p) => p.theme.colors.buttonActive};
 
   &:hover {

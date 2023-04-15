@@ -1,3 +1,4 @@
+import developerAvatar from "assets/images/developer_avatar.jpg";
 import {
   AvatarImage,
   AvatarWrapper,
@@ -10,10 +11,8 @@ import {
   StyledDevCard,
   TweetsLinkButton,
 } from "./DeveloperCard.styled";
-import developerAvatar from "assets/images/developer_avatar.jpg";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ROUTES } from "router";
-import { AvatarBar, ImageWrapper } from "components/Card/Card.styled";
 
 const DeveloperCard = () => {
   const location = useLocation();
@@ -30,7 +29,7 @@ const DeveloperCard = () => {
         </AvatarWrapper>
       </DevAvatarBar>
 
-      <LinksTitle>Developer links</LinksTitle>
+      <LinksTitle>Anton Chertok</LinksTitle>
       <LinksList>
         <LinksItem>
           <DevLink to="https://github.com/chertoha" target="_blank">

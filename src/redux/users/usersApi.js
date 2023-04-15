@@ -28,7 +28,8 @@ export const usersApi = createApi({
   reducerPath: "users",
 
   baseQuery: axiosBaseQuery({
-    baseUrl: "https://64382579c1565cdd4d675499.mockapi.io/api",
+    // baseUrl: "https://64382579c1565cdd4d675499.mockapi.io/api",
+    baseUrl: process.env.REACT_APP_BASE_API_URL,
   }),
 
   tagTypes: ["Users"],
