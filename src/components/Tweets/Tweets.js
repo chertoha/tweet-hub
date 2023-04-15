@@ -41,7 +41,6 @@ const Tweets = () => {
     return;
   }
 
-  // console.log(data);
   const users = data.results;
   const totalUsers = data.count;
 

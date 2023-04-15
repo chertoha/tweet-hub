@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import defaultAvatar from "assets/images/card/default-avatar.png";
 import {
   AvatarBar,
   CardButton,
@@ -7,7 +8,6 @@ import {
   ImageWrapper,
   StyledCard,
 } from "./Card.styled";
-import defaultAvatar from "assets/images/card/default-avatar.png";
 import { useUpdateUserMutation } from "redux/users/usersApi";
 import { convertNumberToLocale } from "utils/convertNumberToLocale";
 
@@ -27,7 +27,6 @@ const Card = ({ userData }) => {
       ...userData,
       isFollowing: !isFollowing,
 
-      // followers: "100500",
       followers: isFollowing
         ? (+followers - 1).toString()
         : (+followers + 1).toString(),
@@ -41,6 +40,7 @@ const Card = ({ userData }) => {
           <img src={avatar} alt={user} width="62" height="62" />
         </ImageWrapper>
       </AvatarBar>
+
       <CardMeta>
         <CardText>{`${convertNumberToLocale(tweets)} ${
           tweets === 1 ? "tweet" : "tweets"
