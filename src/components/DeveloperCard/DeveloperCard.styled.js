@@ -1,14 +1,13 @@
+import styled from "styled-components";
 import { AvatarBar, ImageWrapper } from "components/Card/Card.styled";
 import { Button } from "components/UIKit/Button/Button.styled";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { theme } from "styles/theme";
 
 export const StyledDevCard = styled("div")`
   margin-left: auto;
   margin-right: auto;
   padding: 40px;
-  /* max-width: 280px; */
 
   background-color: ${(p) => p.theme.colors.secondaryBgd};
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -16,6 +15,7 @@ export const StyledDevCard = styled("div")`
 
   ${theme.mq.mobileOnly} {
     max-width: 280px;
+    padding: 40px 20px;
   }
 
   ${theme.mq.tablet} {
@@ -45,9 +45,12 @@ export const AvatarImage = styled("img")`
 
 export const LinksTitle = styled("h2")`
   margin-top: 25px;
-  /* text-align: center; */
   font-size: ${(p) => p.theme.fontSizes.l};
   color: ${(p) => p.theme.colors.secondaryText};
+
+  ${theme.mq.mobileOnly} {
+    font-size: ${(p) => p.theme.fontSizes.m};
+  }
 `;
 
 export const LinksList = styled("ul")`
@@ -63,19 +66,19 @@ export const LinksItem = styled("li")`
 `;
 
 export const DevLink = styled(Link)`
-  font-size: ${(p) => p.theme.fontSizes.xs};
+  font-size: ${(p) => p.theme.fontSizes.xxs};
   color: ${(p) => p.theme.colors.secondaryText};
   text-decoration: underline;
+  word-break: break-all;
 
   transition: color ${(p) => p.theme.transitions.default};
   &:hover {
     color: ${(p) => p.theme.colors.buttonActive};
   }
 
-  ${theme.mq.desktop} {
+  ${theme.mq.tablet} {
     font-size: ${(p) => p.theme.fontSizes.s};
   }
-  word-break: break-all;
 `;
 
 export const GoToTweetsLink = styled(Link)`
@@ -103,6 +106,6 @@ export const TweetsLinkButton = styled(Button)`
   }
 
   ${theme.mq.mobileOnly} {
-    font-size: ${(p) => p.theme.fontSizes.xs};
+    font-size: ${(p) => p.theme.fontSizes.xxs};
   }
 `;

@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { theme } from "styles/theme";
 
 export const DropDownWrapper = styled("div")`
   position: relative;
@@ -16,6 +17,10 @@ export const Title = styled("span")`
   margin-right: 5px;
   font-size: ${(p) => p.theme.fontSizes.l};
   transition: color ${(p) => p.theme.transitions.default};
+
+  ${theme.mq.mobileOnly} {
+    font-size: ${(p) => p.theme.fontSizes.s};
+  }
 `;
 
 export const DropDownList = styled("ul")`
@@ -26,10 +31,16 @@ export const DropDownList = styled("ul")`
   z-index: 9999;
 
   width: 200px;
+  font-size: ${(p) => p.theme.fontSizes.l};
 
   background-color: ${(p) => p.theme.colors.secondaryBgd};
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: ${(p) => p.theme.radii.borderRadius.small};
+
+  ${theme.mq.mobileOnly} {
+    width: 120px;
+    font-size: ${(p) => p.theme.fontSizes.s};
+  }
 `;
 
 export const DropDownItem = styled("li")`
@@ -52,11 +63,14 @@ export const DropDownItem = styled("li")`
       }
     `}
 
-  font-size: ${(p) => p.theme.fontSizes.l};
-
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   &:last-child {
     border-bottom: none;
+  }
+
+  ${theme.mq.mobileOnly} {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 `;

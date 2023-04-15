@@ -2,6 +2,7 @@ import styled from "styled-components";
 import logoImage from "assets/images/logo.png";
 import cardBgdImage from "assets/images/card/card-bgd-image.png";
 import { Button } from "components/UIKit/Button/Button.styled";
+import { theme } from "styles/theme";
 
 export const StyledCard = styled("div")`
   height: 460px;
@@ -74,10 +75,17 @@ export const ImageWrapper = styled("div")`
 `;
 
 export const CardMeta = styled("div")`
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 26px;
   padding-bottom: 36px;
   line-height: 1.2;
   color: ${(p) => p.theme.colors.primaryText};
+
+  ${theme.mq.mobileOnly} {
+    font-size: ${(p) => p.theme.fontSizes.s};
+  }
 `;
 
 export const CardText = styled("p")`
@@ -91,6 +99,9 @@ export const CardText = styled("p")`
 `;
 
 export const CardButton = styled(Button)`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 26px;
   padding: 14px 0;
   width: 196px;
@@ -100,5 +111,12 @@ export const CardButton = styled(Button)`
   &:active {
     background-color: ${(p) =>
       p.isActive ? "rgba(92, 211, 168, 0.8)" : "rgba(235, 216, 255, 0.8)"};
+  }
+
+  ${theme.mq.mobileOnly} {
+    padding: 10px 0;
+    word-break: break-all;
+    width: 80%;
+    font-size: ${(p) => p.theme.fontSizes.xs};
   }
 `;

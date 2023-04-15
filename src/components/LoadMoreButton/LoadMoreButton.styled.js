@@ -1,5 +1,5 @@
-import { Button } from "components/UIKit/Button/Button.styled";
 import styled from "styled-components";
+import { Button } from "components/UIKit/Button/Button.styled";
 
 export const LoadMoreStyled = styled(Button)`
   display: block;
