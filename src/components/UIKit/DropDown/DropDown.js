@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   DropDownItem,
   DropDownList,
@@ -53,3 +54,14 @@ const DropDown = ({ list, currentValue }) => {
 };
 
 export default DropDown;
+
+DropDown.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf([null])]),
+      onClick: PropTypes.func,
+    })
+  ).isRequired,
+  currentValue: PropTypes.oneOfType([PropTypes.bool, PropTypes.oneOf([null])]),
+};

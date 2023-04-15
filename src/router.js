@@ -1,7 +1,7 @@
 import Layout from "components/Layout";
 import HomePage from "pages/HomePage";
 import TweetsPage from "pages/TweetsPage";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 export const ROUTES = {
   HOME: "/",
@@ -23,7 +23,7 @@ const routes = [
       },
       {
         path: "*",
-        element: <HomePage />,
+        element: <Navigate to={ROUTES.HOME} replace />,
       },
     ],
   },

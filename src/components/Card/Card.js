@@ -66,7 +66,7 @@ export default Card;
 
 Card.propTypes = {
   userData: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     user: PropTypes.string.isRequired,
     tweets: PropTypes.string.isRequired,
     followers: PropTypes.string.isRequired,
