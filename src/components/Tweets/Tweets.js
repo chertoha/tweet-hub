@@ -1,13 +1,14 @@
 import Box from "components/Box";
 import CardList from "components/CardList";
 import Container from "components/Container";
+import ErrorMessage from "components/ErrorMessage";
 import Filter from "components/Filter";
 import LoadMoreButton from "components/LoadMoreButton";
 import TweetsToolbar from "components/TweetsToolbar";
 import { useEffect, useState } from "react";
 import { useLazyGetUsersQuery } from "redux/users/usersApi";
 
-const DEFAULT_LIMIT = 12;
+const DEFAULT_LIMIT = process.env.REACT_APP_TWEETS_CARDS_PER_PAGE;
 const DEFAULT_PAGE = 1;
 
 const Tweets = () => {
@@ -15,8 +16,7 @@ const Tweets = () => {
   const [filterValue, setFilterValue] = useState(null);
   const [shouldScroll, setShoulScroll] = useState(false);
 
-  const [fetchData, { data }] = useLazyGetUsersQuery();
-
+  const [fetchData, { data, error }] = useLazyGetUsersQuery();
   useEffect(() => {
     fetchData({ limit: page * DEFAULT_LIMIT, isFollowing: filterValue }).then(
       () => {
@@ -36,6 +36,10 @@ const Tweets = () => {
   const onSelectFilter = (value) => {
     setFilterValue(value);
   };
+
+  if (error) {
+    return <ErrorMessage />;
+  }
 
   if (!data) {
     return;

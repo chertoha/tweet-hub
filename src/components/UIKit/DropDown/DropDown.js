@@ -13,21 +13,22 @@ import { useState } from "react";
 const DropDown = ({ list, currentValue }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const openDropDown = () => {
+    setIsOpen(true);
+  };
+  const closeDropDown = () => {
+    setIsOpen(false);
+  };
+
   const title =
     list.find(({ value }) => currentValue === value)?.title || "Filter";
 
   return (
     <DropDownWrapper
       tabIndex={0}
-      onMouseOver={() => {
-        setIsOpen(true);
-      }}
-      onMouseLeave={() => {
-        setIsOpen(false);
-      }}
-      onFocusCapture={() => {
-        setIsOpen(true);
-      }}
+      onMouseOver={openDropDown}
+      onMouseLeave={closeDropDown}
+      onFocusCapture={openDropDown}
     >
       <TitleWrapper>
         <Title>{title}</Title>

@@ -99,8 +99,6 @@ export const CardText = styled("p")`
 `;
 
 export const CardButton = styled(Button)`
-  /* overflow: hidden; */
-
   display: block;
   margin-left: auto;
   margin-right: auto;
