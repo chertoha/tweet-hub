@@ -38,7 +38,7 @@ const Tweets = () => {
   };
 
   if (error) {
-    return <ErrorMessage />;
+    return <ErrorMessage error={error} />;
   }
 
   if (!data) {
