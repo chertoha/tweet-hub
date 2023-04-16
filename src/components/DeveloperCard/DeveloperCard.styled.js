@@ -8,10 +8,12 @@ export const StyledDevCard = styled("div")`
   margin-left: auto;
   margin-right: auto;
   padding: 40px;
+  margin-bottom: 30px;
 
   background-color: ${(p) => p.theme.colors.secondaryBgd};
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: ${(p) => p.theme.radii.borderRadius.large};
+  box-shadow: -2.5777px 6.87386px 20.6216px rgba(0, 0, 0, 0.23);
 
   ${theme.mq.mobileOnly} {
     max-width: 280px;
