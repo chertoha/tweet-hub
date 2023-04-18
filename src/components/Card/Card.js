@@ -17,21 +17,27 @@ import {
 import { convertNumberToLocale } from "utils/convertNumberToLocale";
 import { useEffect, useState } from "react";
 
-const Card = ({
-  id,
-  user,
-  tweets,
-  followers,
-  // isFollowing,
-  avatar = defaultAvatar,
-  favorites,
-}) => {
+const Card = ({ favorites, ...userData }) => {
+  const {
+    id,
+    user,
+    tweets,
+    followers,
+    // isFollowing,
+    avatar = defaultAvatar,
+  } = userData;
+
   const [updateFavorites] = useUpdateFavoritesMutation();
+  const [updateUser] = useUpdateUserMutation();
   const [follow, setFollow] = useState(null);
 
   useEffect(() => {
     const result = favorites.find(({ userId }) => userId === id);
-    setFollow(result);
+    if (result) {
+      setFollow(result);
+    } else {
+      setFollow(null);
+    }
   }, [favorites, id]);
   // useEffect(() => {
   //   fetchFavorites().then(({ data }) => {
@@ -55,6 +61,16 @@ const Card = ({
     const method = follow ? "DELETE" : "POST";
     const body = method === "POST" ? { userId: id } : null;
     updateFavorites({ id: follow?.id, method, body });
+
+    updateUser({
+      ...userData,
+      //  isFollowing: !isFollowing,
+
+      // followers: "100500",
+      followers: follow
+        ? (+followers - 1).toString()
+        : (+followers + 1).toString(),
+    });
   };
 
   return (
