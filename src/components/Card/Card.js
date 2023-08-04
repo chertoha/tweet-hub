@@ -8,26 +8,66 @@ import {
   ImageWrapper,
   StyledCard,
 } from "./Card.styled";
-import { useUpdateUserMutation } from "redux/users/usersApi";
+import {
+  useGetFavoritesQuery,
+  useLazyGetFavoritesQuery,
+  useUpdateFavoritesMutation,
+  useUpdateUserMutation,
+} from "redux/users/usersApi";
 import { convertNumberToLocale } from "utils/convertNumberToLocale";
+import { useEffect, useState } from "react";
 
-const Card = ({ userData }) => {
-  const [updateUser] = useUpdateUserMutation();
-
+const Card = ({ favorites, ...userData }) => {
   const {
+    id,
     user,
     tweets,
     followers,
-    isFollowing,
+    // isFollowing,
     avatar = defaultAvatar,
   } = userData;
 
+  const [updateFavorites] = useUpdateFavoritesMutation();
+  const [updateUser] = useUpdateUserMutation();
+  const [follow, setFollow] = useState(null);
+
+  useEffect(() => {
+    const result = favorites.find(({ userId }) => userId === id);
+    if (result) {
+      setFollow(result);
+    } else {
+      setFollow(null);
+    }
+  }, [favorites, id]);
+  // useEffect(() => {
+  //   fetchFavorites().then(({ data }) => {
+  //     // const result = favorites.includes(id);
+  //     // console.log(favorites);
+  //     // const result = data.find(({ userId }) => userId === id);
+  //     // setIsFollowing(result);
+  //     // setFollow(result);
+  //   });
+  // }, [favorites, fetchFavorites, id]);
+
+  // useEffect(() => {
+  //   if (favorites) {
+  //     console.log(favorites);
+  //     const result = favorites.find(({ userId }) => userId === id);
+  //     setFollow(result);
+  //   }
+  // }, [favorites, id]);
+
   const onFollowClick = () => {
+    const method = follow ? "DELETE" : "POST";
+    const body = method === "POST" ? { userId: id } : null;
+    updateFavorites({ id: follow?.id, method, body });
+
     updateUser({
       ...userData,
-      isFollowing: !isFollowing,
+      //  isFollowing: !isFollowing,
 
-      followers: isFollowing
+      // followers: "100500",
+      followers: follow
         ? (+followers - 1).toString()
         : (+followers + 1).toString(),
     });
@@ -50,12 +90,8 @@ const Card = ({ userData }) => {
           followers === 1 ? "Followers" : "Followers"
         }`}</CardText>
 
-        <CardButton
-          type="button"
-          isActive={isFollowing}
-          onClick={onFollowClick}
-        >
-          {isFollowing ? "Following" : "Follow"}
+        <CardButton type="button" isActive={follow} onClick={onFollowClick}>
+          {follow ? "Following" : "Follow"}
         </CardButton>
       </CardMeta>
     </StyledCard>
@@ -65,12 +101,11 @@ const Card = ({ userData }) => {
 export default Card;
 
 Card.propTypes = {
-  userData: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    user: PropTypes.string.isRequired,
-    tweets: PropTypes.string.isRequired,
-    followers: PropTypes.string.isRequired,
-    isFollowing: PropTypes.bool.isRequired,
-    avatar: PropTypes.string,
-  }).isRequired,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  user: PropTypes.string.isRequired,
+  tweets: PropTypes.string.isRequired,
+  followers: PropTypes.string.isRequired,
+  // isFollowing: PropTypes.bool.isRequired,
+  avatar: PropTypes.string,
+  favorites: PropTypes.array.isRequired,
 };

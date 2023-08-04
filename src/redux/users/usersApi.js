@@ -31,7 +31,7 @@ export const usersApi = createApi({
     baseUrl: process.env.REACT_APP_BASE_API_URL,
   }),
 
-  tagTypes: ["Users"],
+  tagTypes: ["Users", "Favorites"],
 
   endpoints: (builder) => ({
     getUsers: builder.query({
@@ -55,7 +55,35 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ["Users"],
     }),
+
+    getFavorites: builder.query({
+      query: () => ({
+        url: `/favorites`,
+      }),
+
+      providesTags: ["Favorites"],
+    }),
+
+    updateFavorites: builder.mutation({
+      query: ({ id, method, body }) => {
+        if (method !== "POST" && method !== "DELETE") {
+          throw new Error("Endpoint method must be POST or DELETE");
+        }
+        return {
+          url: method === "POST" ? `/favorites` : `/favorites/${id}`,
+          method,
+          data: body,
+        };
+      },
+      invalidatesTags: ["Favorites", "Users"],
+    }),
   }),
 });
 
-export const { useUpdateUserMutation, useLazyGetUsersQuery } = usersApi;
+export const {
+  useUpdateUserMutation,
+  useLazyGetUsersQuery,
+  useLazyGetFavoritesQuery,
+  useGetFavoritesQuery,
+  useUpdateFavoritesMutation,
+} = usersApi;

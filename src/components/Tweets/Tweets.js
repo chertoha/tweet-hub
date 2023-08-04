@@ -6,7 +6,10 @@ import Filter from "components/Filter";
 import LoadMoreButton from "components/LoadMoreButton";
 import TweetsToolbar from "components/TweetsToolbar";
 import { useEffect, useState } from "react";
-import { useLazyGetUsersQuery } from "redux/users/usersApi";
+import {
+  useGetFavoritesQuery,
+  useLazyGetUsersQuery,
+} from "redux/users/usersApi";
 
 const DEFAULT_LIMIT = process.env.REACT_APP_TWEETS_CARDS_PER_PAGE;
 const DEFAULT_PAGE = 1;
@@ -16,6 +19,8 @@ const Tweets = () => {
   const [filterValue, setFilterValue] = useState(null);
   const [shouldScroll, setShoulScroll] = useState(false);
 
+  const { data: favorites } = useGetFavoritesQuery();
+  console.log(favorites);
   const [fetchData, { data, error }] = useLazyGetUsersQuery();
   useEffect(() => {
     fetchData({ limit: page * DEFAULT_LIMIT, isFollowing: filterValue }).then(
@@ -41,7 +46,7 @@ const Tweets = () => {
     return <ErrorMessage error={error} />;
   }
 
-  if (!data) {
+  if (!data || !favorites) {
     return;
   }
 
@@ -64,7 +69,7 @@ const Tweets = () => {
 
       <Box as="section">
         <Container>
-          <CardList list={users} />
+          <CardList list={users} favorites={favorites} />
         </Container>
       </Box>
 
